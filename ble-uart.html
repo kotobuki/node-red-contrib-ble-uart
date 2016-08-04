@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ble uart', {
+        category: 'advanced',
+        color: '#c0deed',
+        defaults: {
+            name: {
+                value: ""
+            },
+            localName: {
+                value: ""
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bluetooth.png",
+        label: function() {
+            return this.name || "ble uart";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ble uart">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-localName"><i class="icon-tag"></i> Local name</label>
+        <input type="text" id="node-input-localName" placeholder="Local name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="ble uart">
+    <p>A Node-RED node that uses the Noble to interact with BLE devices that support the UART profile by Nordic Semiconductor</p>
+</script>
