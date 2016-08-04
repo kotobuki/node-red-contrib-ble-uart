@@ -8,6 +8,7 @@ A [Node-RED](http://nodered.org/) node that uses the Noble to interact with BLE 
 ## Install
 
 ```sh
+cd $HOME/.node-red
 npm install node-red-contrib-ble-uart
 ```
 
