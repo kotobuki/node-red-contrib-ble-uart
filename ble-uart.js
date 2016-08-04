@@ -71,7 +71,7 @@ module.exports = function(RED) {
             node.status({ fill: "green", shape: "ring", text: "Device found" });
 
             peripheral.connect(function(err) {
-                if (err !== undefined) {
+                if (err === undefined) {
                     node.error('Error connecting: ' + err);
                     return;
                 }
