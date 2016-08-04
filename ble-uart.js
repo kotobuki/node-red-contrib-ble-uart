@@ -134,8 +134,13 @@ module.exports = function(RED) {
                 });
 
                 peripheral.once('disconnect', function(err) {
-                    // Try to be connected again
                     node.log('Disconnected');
+
+                    // Reset characteristics
+                    txCharacteristic = undefined;
+                    rxCharacteristic = undefined;
+
+                    // Try to be connected again
                     noble.startScanning([uartServiceUuid], false);
                 });
             });
