@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-ble-uart",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A Node-RED node that uses the Noble to interact with BLE devices that support the UART profile by Nordic Semiconductor",
     "dependencies": {
         "noble": ">=1.6.0"

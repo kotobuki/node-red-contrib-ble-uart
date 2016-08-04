@@ -45,7 +45,7 @@ module.exports = function(RED) {
 
         noble.on('scanStart', function() {
             node.log('Started scanning');
-            node.status({ fill: "blue", shape: "ring", text: "Scanning" });
+            node.status({ fill: "blue", shape: "ring", text: "Scanning..." });
         });
 
         noble.on('scanStop', function() {
@@ -71,7 +71,7 @@ module.exports = function(RED) {
             node.status({ fill: "green", shape: "ring", text: "Device found" });
 
             peripheral.connect(function(err) {
-                if (err === undefined) {
+                if (err) {
                     node.error('Error connecting: ' + err);
                     return;
                 }
@@ -80,8 +80,9 @@ module.exports = function(RED) {
                 node.status({ fill: "green", shape: "ring", text: "Device connected" });
 
                 peripheral.discoverServices(null, function(err, services) {
-                    if (err === undefined) {
+                    if (err) {
                         node.error('Error discovering services: ' + err);
+                        return;
                     }
 
                     node.log('Services: ' + services.length);
@@ -130,6 +131,12 @@ module.exports = function(RED) {
                             });
                         });
                     });
+                });
+
+                peripheral.once('disconnect', function(err) {
+                    // Try to be connected again
+                    node.log('Disconnected');
+                    noble.startScanning([uartServiceUuid], false);
                 });
             });
         });
