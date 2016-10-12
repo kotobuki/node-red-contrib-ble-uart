@@ -12,6 +12,14 @@ cd $HOME/.node-red
 npm install node-red-contrib-ble-uart
 ```
 
+## Run
+
+```sh
+sudo node-red-start
+```
+
+Note: you have to run with `sudo`, or you can't access your hardware.
+
 ## Example
 
 ```json
