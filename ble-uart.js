@@ -20,7 +20,7 @@ module.exports = function(RED) {
 
         this.on('input', function(msg) {
             if (txCharacteristic) {
-                // Oou can only send at most 20 bytes in a Bluetooth LE pacet,
+                // You can only send at most 20 bytes in a Bluetooth LE packet,
                 // so slice the data into 20-byte chunks:
                 while (msg.payload.length > 20) {
                     var output = msg.payload.slice(0, 19);
