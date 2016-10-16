@@ -9,7 +9,8 @@ module.exports = function(RED) {
         var txCharacteristicUuid = '6e400002b5a3f393e0a9e50e24dcca9e';
         var rxCharacteristicUuid = '6e400003b5a3f393e0a9e50e24dcca9e';
 
-        var txCharacteristic, rxCharacteristic;
+        var txCharacteristic = null;
+        var rxCharacteristic = null;
         var writeWithoutResponse = false;
 
         var node = this;
@@ -96,7 +97,7 @@ module.exports = function(RED) {
 
                         service.discoverCharacteristics(null, function(err, characteristics) {
                             characteristics.forEach(function(characteristic) {
-                                if (txCharacteristicUuid == characteristic.uuid) {
+                                if (txCharacteristicUuid === characteristic.uuid) {
                                     txCharacteristic = characteristic;
 
                                     if (characteristic.properties.indexOf("writeWithoutResponse") > -1) {
@@ -105,7 +106,7 @@ module.exports = function(RED) {
                                     node.log('writeWithoutResponse: ' + writeWithoutResponse);
 
                                     node.log('Found a TX characteristic');
-                                } else if (rxCharacteristicUuid == characteristic.uuid) {
+                                } else if (rxCharacteristicUuid === characteristic.uuid) {
                                     rxCharacteristic = characteristic;
                                     node.log('Found a RX characteristic');
 
@@ -117,7 +118,6 @@ module.exports = function(RED) {
 
                                         // If you got a notification
                                         if (notification) {
-                                            // var msg = { "payload": String(data) };
                                             var msg = { "payload": data };
                                             node.send(msg);
                                         }
@@ -137,8 +137,8 @@ module.exports = function(RED) {
                     node.log('Disconnected');
 
                     // Reset characteristics
-                    txCharacteristic = undefined;
-                    rxCharacteristic = undefined;
+                    txCharacteristic = null;
+                    rxCharacteristic = null;
 
                     // Try to be connected again
                     noble.startScanning([uartServiceUuid], false);
