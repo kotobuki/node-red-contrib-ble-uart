@@ -7,7 +7,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kotobuki/node-red-contrib-ble-uart.git"
+        "url": "https://github.com/kotobuki/node-red-contrib-ble-uart.git"
     },
     "license": "Apache-2.0",
     "keywords": [
