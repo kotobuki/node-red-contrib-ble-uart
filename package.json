@@ -3,7 +3,7 @@
     "version": "0.1.3",
     "description": "A Node-RED node that uses the Noble to interact with BLE devices that support the UART profile by Nordic Semiconductor",
     "dependencies": {
-        "noble": ">=1.6.0"
+        "@abandonware/noble": ">=1.9.2-15"
     },
     "repository": {
         "type": "git",
